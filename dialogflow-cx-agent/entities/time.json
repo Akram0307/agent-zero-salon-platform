@@ -1,0 +1,34 @@
+{
+  "name": "projects/PROJECT_ID/locations/LOCATION_ID/agents/AGENT_ID/entityTypes/time",
+  "displayName": "time",
+  "kind": "KIND_MAP",
+  "entities": [
+    {
+      "value": "morning",
+      "synonyms": [
+        "morning",
+        "AM",
+        "a.m.",
+        "early"
+      ]
+    },
+    {
+      "value": "afternoon",
+      "synonyms": [
+        "afternoon",
+        "PM",
+        "p.m.",
+        "midday"
+      ]
+    },
+    {
+      "value": "evening",
+      "synonyms": [
+        "evening",
+        "night",
+        "late"
+      ]
+    }
+  ],
+  "autoExpansionMode": "AUTO_EXPANSION_MODE_DEFAULT"
+}

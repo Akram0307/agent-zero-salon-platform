@@ -1,0 +1,30 @@
+{
+  "name": "projects/PROJECT_ID/locations/LOCATION_ID/agents/AGENT_ID/entityTypes/date",
+  "displayName": "date",
+  "kind": "KIND_MAP",
+  "entities": [
+    {
+      "value": "today",
+      "synonyms": [
+        "today",
+        "now",
+        "this day"
+      ]
+    },
+    {
+      "value": "tomorrow",
+      "synonyms": [
+        "tomorrow",
+        "next day"
+      ]
+    },
+    {
+      "value": "next week",
+      "synonyms": [
+        "next week",
+        "in a week"
+      ]
+    }
+  ],
+  "autoExpansionMode": "AUTO_EXPANSION_MODE_DEFAULT"
+}

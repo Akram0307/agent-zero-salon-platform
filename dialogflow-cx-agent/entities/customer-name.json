@@ -1,0 +1,24 @@
+{
+  "name": "projects/PROJECT_ID/locations/LOCATION_ID/agents/AGENT_ID/entityTypes/customer-name",
+  "displayName": "customer-name",
+  "kind": "KIND_MAP",
+  "entities": [
+    {
+      "value": "John",
+      "synonyms": [
+        "John",
+        "Jon",
+        "Johnny"
+      ]
+    },
+    {
+      "value": "Mary",
+      "synonyms": [
+        "Mary",
+        "Marie",
+        "Maria"
+      ]
+    }
+  ],
+  "autoExpansionMode": "AUTO_EXPANSION_MODE_DEFAULT"
+}

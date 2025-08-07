@@ -1,0 +1,90 @@
+{
+  "name": "projects/PROJECT_ID/locations/LOCATION_ID/agents/AGENT_ID/intents/booking-service",
+  "displayName": "Booking Service",
+  "trainingPhrases": [
+    {
+      "parts": [
+        {
+          "text": "I want to book a haircut"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "Can I schedule a manicure"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "I'd like to make an appointment for a facial"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "Book me a pedicure"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "I need to schedule a massage"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "Can I get a booking for hair coloring"
+        }
+      ]
+    }
+  ],
+  "parameters": [
+    {
+      "displayName": "service-type",
+      "entityType": "projects/PROJECT_ID/locations/LOCATION_ID/agents/AGENT_ID/entityTypes/service-type",
+      "mandatory": true,
+      "prompts": [
+        "What service would you like to book?"
+      ]
+    },
+    {
+      "displayName": "date",
+      "entityType": "projects/PROJECT_ID/locations/LOCATION_ID/agents/AGENT_ID/entityTypes/date",
+      "mandatory": true,
+      "prompts": [
+        "What date would you like to book?"
+      ]
+    },
+    {
+      "displayName": "time",
+      "entityType": "projects/PROJECT_ID/locations/LOCATION_ID/agents/AGENT_ID/entityTypes/time",
+      "mandatory": true,
+      "prompts": [
+        "What time would you like to book?"
+      ]
+    },
+    {
+      "displayName": "customer-name",
+      "entityType": "projects/PROJECT_ID/locations/LOCATION_ID/agents/AGENT_ID/entityTypes/customer-name",
+      "mandatory": true,
+      "prompts": [
+        "What is your name?"
+      ]
+    },
+    {
+      "displayName": "phone-number",
+      "entityType": "projects/PROJECT_ID/locations/LOCATION_ID/agents/AGENT_ID/entityTypes/phone-number",
+      "mandatory": true,
+      "prompts": [
+        "What is your phone number?"
+      ]
+    }
+  ]
+}

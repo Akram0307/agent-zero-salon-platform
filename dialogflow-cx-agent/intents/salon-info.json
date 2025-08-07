@@ -1,0 +1,49 @@
+{
+  "name": "projects/PROJECT_ID/locations/LOCATION_ID/agents/AGENT_ID/intents/salon-info",
+  "displayName": "Salon Information",
+  "trainingPhrases": [
+    {
+      "parts": [
+        {
+          "text": "What are your hours"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "Where are you located"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "What services do you offer"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "Do you have parking"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "What are your prices"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "Tell me about your salon"
+        }
+      ]
+    }
+  ],
+  "parameters": []
+}

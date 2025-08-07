@@ -1,0 +1,58 @@
+{
+  "name": "projects/PROJECT_ID/locations/LOCATION_ID/agents/AGENT_ID/intents/cancel-booking",
+  "displayName": "Cancel Booking",
+  "trainingPhrases": [
+    {
+      "parts": [
+        {
+          "text": "I want to cancel my appointment"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "Can I cancel my booking"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "I need to cancel my haircut"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "Cancel my manicure"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "I'd like to cancel my facial"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "How do I cancel my booking"
+        }
+      ]
+    }
+  ],
+  "parameters": [
+    {
+      "displayName": "booking-id",
+      "entityType": "projects/PROJECT_ID/locations/LOCATION_ID/agents/AGENT_ID/entityTypes/booking-id",
+      "mandatory": true,
+      "prompts": [
+        "What is your booking ID?"
+      ]
+    }
+  ]
+}

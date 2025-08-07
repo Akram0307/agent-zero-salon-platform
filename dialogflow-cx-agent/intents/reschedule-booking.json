@@ -1,0 +1,74 @@
+{
+  "name": "projects/PROJECT_ID/locations/LOCATION_ID/agents/AGENT_ID/intents/reschedule-booking",
+  "displayName": "Reschedule Booking",
+  "trainingPhrases": [
+    {
+      "parts": [
+        {
+          "text": "I want to reschedule my appointment"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "Can I change my booking time"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "I need to move my appointment to a different time"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "Reschedule my haircut"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "Change my booking date"
+        }
+      ]
+    },
+    {
+      "parts": [
+        {
+          "text": "I'd like to reschedule my manicure"
+        }
+      ]
+    }
+  ],
+  "parameters": [
+    {
+      "displayName": "booking-id",
+      "entityType": "projects/PROJECT_ID/locations/LOCATION_ID/agents/AGENT_ID/entityTypes/booking-id",
+      "mandatory": true,
+      "prompts": [
+        "What is your booking ID?"
+      ]
+    },
+    {
+      "displayName": "new-date",
+      "entityType": "projects/PROJECT_ID/locations/LOCATION_ID/agents/AGENT_ID/entityTypes/date",
+      "mandatory": true,
+      "prompts": [
+        "What new date would you like to book?"
+      ]
+    },
+    {
+      "displayName": "new-time",
+      "entityType": "projects/PROJECT_ID/locations/LOCATION_ID/agents/AGENT_ID/entityTypes/time",
+      "mandatory": true,
+      "prompts": [
+        "What new time would you like to book?"
+      ]
+    }
+  ]
+}

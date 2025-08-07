@@ -1,0 +1,11 @@
+{
+  "name": "projects/PROJECT_ID/locations/LOCATION_ID/agents/AGENT_ID/webhooks/booking-webhook",
+  "displayName": "Booking Webhook",
+  "genericWebService": {
+    "uri": "https://booking-service-PROJECT_ID.uc.r.appspot.com/api/bookings",
+    "requestHeaders": {
+      "Content-Type": "application/json",
+      "x-api-key": "YOUR_API_KEY"
+    }
+  }
+}

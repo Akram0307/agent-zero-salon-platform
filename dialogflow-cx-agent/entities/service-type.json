@@ -1,0 +1,56 @@
+{
+  "name": "projects/PROJECT_ID/locations/LOCATION_ID/agents/AGENT_ID/entityTypes/service-type",
+  "displayName": "service-type",
+  "kind": "KIND_MAP",
+  "entities": [
+    {
+      "value": "haircut",
+      "synonyms": [
+        "hair cut",
+        "trim",
+        "hair trim"
+      ]
+    },
+    {
+      "value": "manicure",
+      "synonyms": [
+        "manicure",
+        "nail polish",
+        "nail painting"
+      ]
+    },
+    {
+      "value": "pedicure",
+      "synonyms": [
+        "pedicure",
+        "foot spa",
+        "toenail care"
+      ]
+    },
+    {
+      "value": "facial",
+      "synonyms": [
+        "facial",
+        "skin treatment",
+        "face treatment"
+      ]
+    },
+    {
+      "value": "massage",
+      "synonyms": [
+        "massage",
+        "body massage",
+        "relaxation massage"
+      ]
+    },
+    {
+      "value": "hair coloring",
+      "synonyms": [
+        "hair coloring",
+        "hair dye",
+        "coloring",
+        "dye"
+      ]
+    }
+  ]
+}
