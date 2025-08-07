@@ -1,0 +1,8 @@
+steps:
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: ['run','deploy','${_SERVICE}-stg','--image','${_REGION}-docker.pkg.dev/$PROJECT_ID/salon/${_SERVICE}:${_DIGEST}','--region','${_REGION}','--platform','managed','--allow-unauthenticated','--min-instances','0','--max-instances','2','--cpu','1','--memory','512Mi']
+substitutions:
+  _REGION: 'asia-south1'
+  _SERVICE: 'service'
+  _DIGEST: 'latest'
