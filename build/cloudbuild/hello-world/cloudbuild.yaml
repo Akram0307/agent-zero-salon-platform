@@ -1,0 +1,32 @@
+# Cloud Build configuration for the Hello World service
+
+# Use the gcloud image for gcloud commands
+steps:
+# Build the Docker image
+- name: "gcr.io/cloud-builders/docker"
+  args: ["build", "-t", "asia-south1-docker.pkg.dev/$PROJECT_ID/salon-repo/hello-world:latest", "."]
+  dir: "services/hello-world"
+
+# Push the Docker image to Artifact Registry
+- name: "gcr.io/cloud-builders/docker"
+  args: ["push", "asia-south1-docker.pkg.dev/$PROJECT_ID/salon-repo/hello-world:latest"]
+
+# Deploy the image to Cloud Run
+- name: "gcr.io/cloud-builders/gcloud"
+  args:
+  - "run"
+  - "deploy"
+  - "hello-world"
+  - "--image"
+  - "asia-south1-docker.pkg.dev/$PROJECT_ID/salon-repo/hello-world:latest"
+  - "--region"
+  - "asia-south1"
+  - "--platform"
+  - "managed"
+  - "--allow-unauthenticated"
+  - "--set-env-vars"
+  - "GOOGLE_CLOUD_PROJECT=$PROJECT_ID"
+
+# Define images to be pushed to Artifact Registry
+images:
+- "asia-south1-docker.pkg.dev/$PROJECT_ID/salon-repo/hello-world:latest"
