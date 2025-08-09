@@ -5,7 +5,7 @@ Director Agent - Central orchestrator managing all other agents
 import os
 import sys
 # Add the project root to sys.path to ensure 'shared' module can be imported
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..'))
 
 from fastapi import FastAPI, BackgroundTasks
 from pydantic import BaseModel
