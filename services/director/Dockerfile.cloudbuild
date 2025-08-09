@@ -1,0 +1,29 @@
+# Use the official Python image
+FROM python:3.9-slim
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the requirements file from its location relative to the project root
+COPY services/director/requirements.txt .
+
+# Install the dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the application code from its location relative to the project root
+COPY services/director/ .
+
+# Copy the shared directory from its location relative to the project root
+COPY shared/ ./shared
+
+# Set environment variable for port
+ENV PORT=8000
+
+# Set PYTHONPATH to include the project root
+ENV PYTHONPATH=/app
+
+# Expose the port
+EXPOSE 8000
+
+# Run the application
+CMD uvicorn agents.core.director.main:app --host 0.0.0.0 --port PORT

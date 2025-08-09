@@ -5,16 +5,16 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Copy the requirements file
-COPY services/hello-world/requirements.txt .
+COPY requirements.txt .
 
 # Install the dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the application code
-COPY services/hello-world/ .
+COPY . .
 
 # Copy the shared directory
-COPY shared/ ./shared
+COPY ../../shared ./shared
 
 # Set environment variable for port
 ENV PORT=8080
