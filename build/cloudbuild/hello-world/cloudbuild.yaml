@@ -4,8 +4,8 @@
 steps:
 # Build the Docker image
 - name: "gcr.io/cloud-builders/docker"
-  args: ["build", "-t", "asia-south1-docker.pkg.dev/$PROJECT_ID/salon-repo/hello-world:latest", "."]
-  dir: "services/hello-world"
+  args: ["build", "-t", "asia-south1-docker.pkg.dev/$PROJECT_ID/salon-repo/hello-world:latest", "services/hello-world"]
+  dir: "."
 
 # Push the Docker image to Artifact Registry
 - name: "gcr.io/cloud-builders/docker"
