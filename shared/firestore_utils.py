@@ -3,18 +3,28 @@ import os
 from google.cloud import firestore
 
 service_account_key_path = "/a0/tmp/uploads/salon-autonomous-ai-467811-fbe5da7865de.json"
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = service_account_key_path
+
+# Only set the GOOGLE_APPLICATION_CREDENTIALS if the file exists
+if os.path.exists(service_account_key_path):
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = service_account_key_path
+
 os.environ["GOOGLE_CLOUD_PROJECT"] = os.getenv("GOOGLE_CLOUD_PROJECT", "salon-autonomous-ai-467811")
 
+db = None
 try:
     db = firestore.Client()
 except Exception as e:
-    print(f"Error initializing Firestore client: {e}")
+    print(f"Warning: Error initializing Firestore client: {e}")
     print("Please ensure Application Default Credentials are set up correctly.")
     print("Refer to https://cloud.google.com/docs/authentication/external/set-up-adc for more information.")
-    raise # Re-raise the exception to indicate failure
+    # Not raising the exception to allow the application to start
+    # The functions will handle the case where db is None
 
 def add_document(collection_name: str, data: dict, document_id: str = None):
+    if db is None:
+        print("Firestore client not initialized. Cannot add document.")
+        return None
+
     try:
         if document_id:
             doc_ref = db.collection(collection_name).document(document_id)
@@ -28,6 +38,10 @@ def add_document(collection_name: str, data: dict, document_id: str = None):
         return None
 
 def get_document(collection_name: str, document_id: str):
+    if db is None:
+        print("Firestore client not initialized. Cannot get document.")
+        return None
+
     try:
         doc_ref = db.collection(collection_name).document(document_id)
         doc = doc_ref.get()
@@ -40,6 +54,10 @@ def get_document(collection_name: str, document_id: str):
         return None
 
 def update_document(collection_name: str, document_id: str, data: dict):
+    if db is None:
+        print("Firestore client not initialized. Cannot update document.")
+        return False
+
     try:
         doc_ref = db.collection(collection_name).document(document_id)
         doc_ref.update(data)
@@ -49,6 +67,10 @@ def update_document(collection_name: str, document_id: str, data: dict):
         return False
 
 def delete_document(collection_name: str, document_id: str):
+    if db is None:
+        print("Firestore client not initialized. Cannot delete document.")
+        return False
+
     try:
         db.collection(collection_name).document(document_id).delete()
         return True
@@ -57,6 +79,10 @@ def delete_document(collection_name: str, document_id: str):
         return False
 
 def query_collection(collection_name: str, field: str, op: str, value: any):
+    if db is None:
+        print("Firestore client not initialized. Cannot query collection.")
+        return []
+
     try:
         docs = db.collection(collection_name).where(field, op, value).stream()
         results = []
