@@ -2,27 +2,27 @@ steps:
 - args:
   - build
   - -t
-  - asia-south1-docker.pkg.dev/{_PROJECT_ID}/salon-repo/booking-api:latest
+  - asia-south1-docker.pkg.dev//salon-repo/booking-api:latest
   - -f
   - services/booking-api/Dockerfile.cloudbuild
   - .
   name: gcr.io/cloud-builders/docker
 - args:
   - push
-  - asia-south1-docker.pkg.dev/{_PROJECT_ID}/salon-repo/booking-api:latest
+  - asia-south1-docker.pkg.dev//salon-repo/booking-api:latest
   name: gcr.io/cloud-builders/docker
 - args:
   - run
   - deploy
   - booking-api
   - --image
-  - asia-south1-docker.pkg.dev/{_PROJECT_ID}/salon-repo/booking-api:latest
+  - asia-south1-docker.pkg.dev//salon-repo/booking-api:latest
   - --region
   - asia-south1
   - --platform
   - managed
   - --set-env-vars
-  - GOOGLE_CLOUD_PROJECT={_PROJECT_ID}
+  - GOOGLE_CLOUD_PROJECT=
   name: gcr.io/cloud-builders/gcloud
 - args:
   - run
@@ -32,7 +32,5 @@ steps:
   - --member=allUsers
   - --role=roles/run.invoker
   - --region=asia-south1
-  - --project={_PROJECT_ID}
+  - --project=
   name: gcr.io/cloud-builders/gcloud
-substitutions:
-  _PROJECT_ID: salon-autonomous-ai-467811
