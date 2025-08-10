@@ -41,7 +41,7 @@ async def create_booking(request: BookingRequest):
         booking_data["status"] = "pending"
 
         # Save to Firestore
-        firestore_utils.save_document("bookings", booking_id, booking_data)
+        firestore_utils.add_document("bookings", booking_data, booking_id) # Changed save_document to add_document
         logger.info(f"Booking {booking_id} saved to Firestore.")
 
         # Publish booking_created event
