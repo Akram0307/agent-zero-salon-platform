@@ -16,6 +16,11 @@ RUN mkdir -p agents/core/booking-api
 # Copy the application code from its location relative to the project root into the correct package structure
 COPY services/booking-api/ ./agents/core/booking-api/
 
+# Create __init__.py files to make them Python packages
+RUN touch agents/__init__.py
+RUN touch agents/core/__init__.py
+RUN touch agents/core/booking-api/__init__.py
+
 # Copy the shared directory from its location relative to the project root
 COPY shared/ ./shared
 
