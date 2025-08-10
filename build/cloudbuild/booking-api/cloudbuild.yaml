@@ -1,6 +1,8 @@
 images:
 - asia-south1-docker.pkg.dev//salon-repo/booking-api:latest
 steps:
+- name: 'gcr.io/cloud-builders/bash'
+  args: ['echo', 'Project ID: ']
 - args:
   - build
   - -t
