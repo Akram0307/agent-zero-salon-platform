@@ -24,9 +24,6 @@ RUN touch agents/core/booking-api/__init__.py
 # Copy the shared directory from its location relative to the project root
 COPY shared/ ./shared
 
-# Set environment variable for port
-ENV PORT=8080
-
 # Set PYTHONPATH to include the project root
 ENV PYTHONPATH=/app
 
