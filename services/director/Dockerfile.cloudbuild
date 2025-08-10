@@ -10,8 +10,11 @@ COPY services/director/requirements.txt .
 # Install the dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the application code from its location relative to the project root
-COPY services/director/ .
+# Create the directory structure for the application
+RUN mkdir -p agents/core/director
+
+# Copy the application code from its location relative to the project root into the correct package structure
+COPY services/director/ ./agents/core/director/
 
 # Copy the shared directory from its location relative to the project root
 COPY shared/ ./shared
@@ -26,4 +29,4 @@ ENV PYTHONPATH=/app
 EXPOSE 8080
 
 # Run the application
-CMD uvicorn agents.core.director.main:app --host 0.0.0.0 --port $PORT
+CMD uvicorn agents.core.director.main:app --host 0.0.0.0 --port PORT
