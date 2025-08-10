@@ -17,13 +17,13 @@ COPY services/director/ .
 COPY shared/ ./shared
 
 # Set environment variable for port
-ENV PORT=8000
+ENV PORT=8080
 
 # Set PYTHONPATH to include the project root
 ENV PYTHONPATH=/app
 
 # Expose the port
-EXPOSE 8000
+EXPOSE 8080
 
 # Run the application
-CMD uvicorn main:app --host 0.0.0.0 --port $PORT
+CMD uvicorn agents.core.director.main:app --host 0.0.0.0 --port $PORT

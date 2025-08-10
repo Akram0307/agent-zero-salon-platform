@@ -1,34 +1,29 @@
+# Cloud Build configuration for the Director service
+
 steps:
-- name: gcr.io/cloud-builders/docker
+# Build the Docker image from the project root
+- name: "gcr.io/cloud-builders/docker"
+  args: ["build", "-t", "asia-south1-docker.pkg.dev/$PROJECT_ID/salon-repo/director:latest", "-f", "services/director/Dockerfile.cloudbuild", "."]
+
+# Push the Docker image to Artifact Registry
+- name: "gcr.io/cloud-builders/docker"
+  args: ["push", "asia-south1-docker.pkg.dev/$PROJECT_ID/salon-repo/director:latest"]
+
+# Deploy the image to Cloud Run
+- name: "gcr.io/cloud-builders/gcloud"
   args:
-  - build
-  - -f
-  - services/director/Dockerfile.cloudbuild
-  - -t
-  - ${_IMAGE}
-  - .
-- name: gcr.io/cloud-builders/docker
-  args:
-  - push
-  - ${_IMAGE}
-- name: gcr.io/google.com/cloudsdktool/cloud-sdk
-  args:
-  - run
-  - deploy
-  - director
-  - --image
-  - ${_IMAGE}
-  - --region
-  - ${_REGION}
-  - --platform
-  - managed
-  - --allow-unauthenticated
-  - --set-env-vars
-  - GOOGLE_CLOUD_PROJECT=${_PROJECT_ID}
+  - "run"
+  - "deploy"
+  - "director"
+  - "--image"
+  - "asia-south1-docker.pkg.dev/$PROJECT_ID/salon-repo/director:latest"
+  - "--region"
+  - "asia-south1"
+  - "--platform"
+  - "managed"
+  - "--allow-unauthenticated"
+  - "--set-env-vars"
+  - "GOOGLE_CLOUD_PROJECT=$PROJECT_ID"
+
 images:
-- ${_IMAGE}
-substitutions:
-  _REGION: asia-south1
-  _IMAGE: asia-south1-docker.pkg.dev/salon-autonomous-ai-467811/ai-apps/director:latest
-  _PROJECT_ID: salon-autonomous-ai-467811
-timeout: 600s
+- "asia-south1-docker.pkg.dev/$PROJECT_ID/salon-repo/director:latest"
