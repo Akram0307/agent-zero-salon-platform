@@ -1,19 +1,17 @@
 steps:
-- name: 'gcr.io/cloud-builders/bash'
+- name: 'gcr.io/cloud-builders/docker'
   args:
-  - '-c'
-  - |
-    PROJECT_ID=salon-autonomous-ai-467811
-    IMAGE_NAME="asia-south1-docker.pkg.dev//salon-repo/booking-api:latest"
-    docker build -t "" -f services/booking-api/Dockerfile.cloudbuild .
+  - 'build'
+  - '-t'
+  - 'asia-south1-docker.pkg.dev/salon-autonomous-ai-467811/salon-repo/booking-api:latest'
+  - '-f'
+  - 'services/booking-api/Dockerfile.cloudbuild'
+  - '.'
   id: 'Build Docker Image'
-- name: 'gcr.io/cloud-builders/bash'
+- name: 'gcr.io/cloud-builders/docker'
   args:
-  - '-c'
-  - |
-    PROJECT_ID=salon-autonomous-ai-467811
-    IMAGE_NAME="asia-south1-docker.pkg.dev//salon-repo/booking-api:latest"
-    docker push ""
+  - 'push'
+  - 'asia-south1-docker.pkg.dev/salon-autonomous-ai-467811/salon-repo/booking-api:latest'
   id: 'Push Docker Image'
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
@@ -21,13 +19,13 @@ steps:
   - 'deploy'
   - 'booking-api'
   - '--image'
-  - 'asia-south1-docker.pkg.dev//salon-repo/booking-api:latest'
+  - 'asia-south1-docker.pkg.dev/salon-autonomous-ai-467811/salon-repo/booking-api:latest'
   - '--region'
   - 'asia-south1'
   - '--platform'
   - 'managed'
   - '--set-env-vars'
-  - 'GOOGLE_CLOUD_PROJECT='
+  - 'GOOGLE_CLOUD_PROJECT=salon-autonomous-ai-467811'
   id: 'Deploy to Cloud Run'
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
@@ -38,5 +36,5 @@ steps:
   - '--member=allUsers'
   - '--role=roles/run.invoker'
   - '--region=asia-south1'
-  - '--project='
+  - '--project=salon-autonomous-ai-467811'
   id: 'Set Invoker Policy'
