@@ -1,7 +1,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'asia-south1-docker.pkg.dev/PROJECT_ID/salon-repo/director:latest', '-f', 'services/director/Dockerfile.cloudbuild', '.']
+  args: ['build', '-t', 'asia-south1-docker.pkg.dev/salon-autonomous-ai-467811/salon-repo/director:latest', '-f', 'services/director/Dockerfile.cloudbuild', '.']
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['run', 'deploy', 'director', '--image', 'asia-south1-docker.pkg.dev/PROJECT_ID/salon-repo/director:latest', '--region', 'asia-south1', '--platform', 'managed', '--allow-unauthenticated']
+  args: ['run', 'deploy', 'director', '--image', 'asia-south1-docker.pkg.dev/salon-autonomous-ai-467811/salon-repo/director:latest', '--region', 'asia-south1', '--platform', 'managed', '--allow-unauthenticated']
 images:
-- asia-south1-docker.pkg.dev/PROJECT_ID/salon-repo/director:latest
+- asia-south1-docker.pkg.dev/salon-autonomous-ai-467811/salon-repo/director:latest
