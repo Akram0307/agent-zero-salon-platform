@@ -1,0 +1,38 @@
+images:
+- asia-south1-docker.pkg.dev//salon-repo/booking-api:latest
+steps:
+- args:
+  - build
+  - -t
+  - asia-south1-docker.pkg.dev//salon-repo/booking-api:latest
+  - -f
+  - services/booking-api/Dockerfile.cloudbuild
+  - .
+  name: gcr.io/cloud-builders/docker
+- args:
+  - push
+  - asia-south1-docker.pkg.dev//salon-repo/booking-api:latest
+  name: gcr.io/cloud-builders/docker
+- args:
+  - run
+  - deploy
+  - booking-api
+  - --image
+  - asia-south1-docker.pkg.dev//salon-repo/booking-api:latest
+  - --region
+  - asia-south1
+  - --platform
+  - managed
+  - --set-env-vars
+  - GOOGLE_CLOUD_PROJECT=
+  name: gcr.io/cloud-builders/gcloud
+- args:
+  - run
+  - services
+  - add-iam-policy-binding
+  - booking-api
+  - --member=allUsers
+  - --role=roles/run.invoker
+  - --region=asia-south1
+  - --project=
+  name: gcr.io/cloud-builders/gcloud
