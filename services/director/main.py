@@ -48,10 +48,10 @@ async def firestore_test(payload: FirestoreTestData):
     """
     try:
         # Save document
-        firestore_utils.save_document(
+        firestore_utils.add_document(
             payload.collection_name,
-            payload.document_id,
-            payload.data
+            payload.data,
+            payload.document_id
         )
         logger.info(f"Saved document {payload.document_id} to collection {payload.collection_name}")
 
