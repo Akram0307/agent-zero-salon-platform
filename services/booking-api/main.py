@@ -6,7 +6,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from uuid import uuid4
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..'))
+# sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..')) # Removed this line
 
 from shared import pubsub_utils, firestore_utils
 
