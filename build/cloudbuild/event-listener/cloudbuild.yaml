@@ -1,0 +1,38 @@
+images:
+- asia-south1-docker.pkg.dev/$PROJECT_ID/salon-repo/event-listener:latest
+steps:
+- args:
+  - build
+  - -t
+  - asia-south1-docker.pkg.dev/$PROJECT_ID/salon-repo/event-listener:latest
+  - -f
+  - services/event-listener/Dockerfile.cloudbuild
+  - .
+  name: gcr.io/cloud-builders/docker
+- args:
+  - push
+  - asia-south1-docker.pkg.dev/$PROJECT_ID/salon-repo/event-listener:latest
+  name: gcr.io/cloud-builders/docker
+- args:
+  - run
+  - deploy
+  - event-listener
+  - --image
+  - asia-south1-docker.pkg.dev/$PROJECT_ID/salon-repo/event-listener:latest
+  - --region
+  - asia-south1
+  - --platform
+  - managed
+  - --set-env-vars
+  - GOOGLE_CLOUD_PROJECT=$PROJECT_ID
+  name: gcr.io/cloud-builders/gcloud
+- args:
+  - run
+  - services
+  - add-iam-policy-binding
+  - event-listener
+  - --member=allUsers
+  - --role=roles/run.invoker
+  - --region=asia-south1
+  - --project=$PROJECT_ID
+  name: gcr.io/cloud-builders/gcloud
