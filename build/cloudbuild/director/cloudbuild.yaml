@@ -1,12 +1,27 @@
+
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'asia-south1-docker.pkg.dev/salon-autonomous-ai-467811/salon-repo/director:latest', '-f', 'services/director/Dockerfile.cloudbuild', '.']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'asia-south1-docker.pkg.dev/salon-autonomous-ai-467811/salon-repo/director:latest']
-- name: 'gcr.io/cloud-builders/gcloud'
-  args: ['run', 'deploy', 'director', '--image', 'asia-south1-docker.pkg.dev/salon-autonomous-ai-467811/salon-repo/director:latest', '--region', 'asia-south1', '--platform', 'managed', '--allow-unauthenticated']
-- name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: 'bash'
-  args: ['-c', 'gcloud beta run services add-iam-policy-binding director --member=allUsers --role=roles/run.invoker --region=asia-south1 || true']
+# Build the Docker image from the project root
+- name: "gcr.io/cloud-builders/docker"
+  args: ["build", "-t", "asia-south1-docker.pkg.dev/$PROJECT_ID/salon-repo/director:latest", "-f", "services/director/Dockerfile.cloudbuild", "."]
+
+# Push the Docker image to Artifact Registry
+- name: "gcr.io/cloud-builders/docker"
+  args: ["push", "asia-south1-docker.pkg.dev/$PROJECT_ID/salon-repo/director:latest"]
+
+# Deploy the image to Cloud Run (without --allow-unauthenticated initially)
+- name: "gcr.io/cloud-builders/gcloud"
+  args:
+  - "run"
+  - "deploy"
+  - "director"
+  - "--image"
+  - "asia-south1-docker.pkg.dev/$PROJECT_ID/salon-repo/director:latest"
+  - "--region"
+  - "asia-south1"
+  - "--platform"
+  - "managed"
+  - "--set-env-vars"
+  - "GOOGLE_CLOUD_PROJECT=$PROJECT_ID"
+
 images:
-- asia-south1-docker.pkg.dev/salon-autonomous-ai-467811/salon-repo/director:latest
+- "asia-south1-docker.pkg.dev/$PROJECT_ID/salon-repo/director:latest"
