@@ -30,10 +30,10 @@ async def pubsub_push(request: Request):
     global last_received_message
     try:
         data = await request.json()
-        message_data = base64.b64decode(data['message']['data']).decode('utf-8')
-        attributes = data['message'].get('attributes', {})
-        message_id = data['message'].get('messageId')
-        publish_time = data['message'].get('publishTime')
+        message_data = base64.b64decode(data[\'message\'][\'data\']).decode(\'utf-8\')
+        attributes = data[\'message\'].get(\'attributes\', {})
+        message_id = data[\'message\'].get(\'messageId\')
+        publish_time = data[\'message\'].get(\'publishTime\')
 
         logger.info(f"Received Pub/Sub message:")
         logger.info(f"  Message ID: {message_id}")
@@ -67,3 +67,4 @@ def health_check():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
+
