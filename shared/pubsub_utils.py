@@ -6,7 +6,7 @@ project_id = os.getenv("GOOGLE_CLOUD_PROJECT", "salon-autonomous-ai-467811")
 topic_name = "salon-events"
 subscription_name = "salon-events-sub"
 
-def publish_message(message_data: str, attributes: dict = None):
+def publish_message(message_data: str, attributes: dict = None, topic_name: str = "salon-events"):
     publisher = pubsub_v1.PublisherClient()
     topic_path = publisher.topic_path(project_id, topic_name)
     data = message_data.encode("utf-8")
